@@ -5,19 +5,18 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     private bool firstTouch;
-    public Transform player;
+    public Transform playerheading;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("PlayerMan").GetComponent<Transform>();
-        firstTouch = false;
-    }
+        playerheading = GameObject.Find("Heading").GetComponent<Transform>();
 
+    }
     // Update is called once per frame
     void Update()
     {
 
-        transform.position = new Vector3(Mathf.Clamp(player.position.x, -13, 17.5f), Mathf.Clamp(player.position.y, 5, 7), transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(playerheading.position.x, -13, 17.5f), Mathf.Clamp(playerheading.position.y, 3, 9), transform.position.z);
         /*print(transform.position.x + " is transform.position.x, "+ transform.position.y + " is transform.position.y");
         
         if (transform.position.x < player.position.x)
