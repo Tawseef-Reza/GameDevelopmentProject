@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void PlayerUpdate()
     {
         /*if ()
         {
@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
             //print("making false code being ran");
             _animator.SetBool("isJumping", false);
         }
+        
         
     }
     private IEnumerator allowJump()

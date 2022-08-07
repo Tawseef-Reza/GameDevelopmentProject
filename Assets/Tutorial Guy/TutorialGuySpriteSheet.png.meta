@@ -1,0 +1,503 @@
+fileFormatVersion: 2
+guid: f614b5907e874944ebb68fcab2f513f3
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TutorialGuySpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 634
+        width: 346
+        height: 484
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d0e5e8f7c0fe0f48972c5a272317675
+      internalID: -1156568323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialGuySpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 633
+        width: 341
+        height: 486
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5000001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 735e9ebc22ee0f740bb39ad5a29143ca
+      internalID: 1107562635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialGuySpriteSheet_44
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 642
+        width: 338
+        height: 486
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c3dc30fb28decd41ab882e5e38e7970
+      internalID: -1541883751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialGuySpriteSheet_51
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 633
+        width: 338
+        height: 497
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcf02023f508c5e4daf875d23c25028f
+      internalID: -1083819954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialGuySpriteSheet_56
+      rect:
+        serializedVersion: 2
+        x: 1838
+        y: 642
+        width: 340
+        height: 488
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18f64d08ee7b0014da7152e0ed21f0e2
+      internalID: 2059727996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialGuySpriteSheet_98
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 68
+        width: 333
+        height: 486
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee0191721476917459e91e644355b958
+      internalID: -2056720302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialGuySpriteSheet_112
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 68
+        width: 338
+        height: 486
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53adeef3446db6b4795dc24360b23879
+      internalID: -632033880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialGuySpriteSheet_125
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 68
+        width: 345
+        height: 483
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbe75d045086649448d36d43ce0e280f
+      internalID: 1897760030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialGuySpriteSheet_141
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 68
+        width: 356
+        height: 476
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f22aa07154fc2684885b10e6880c7175
+      internalID: -78973146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialGuySpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 1808
+        y: 69
+        width: 356
+        height: 475
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41f493826edead04990074c2376a4da4
+      internalID: 1053420404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      TutorialGuySpriteSheet_33: 82656118
+      TutorialGuySpriteSheet_134: -1837806558
+      TutorialGuySpriteSheet_155: -181207997
+      TutorialGuySpriteSheet_9: -680858854
+      TutorialGuySpriteSheet_119: -1671719958
+      TutorialGuySpriteSheet_12: 1741038198
+      TutorialGuySpriteSheet_14: -1156568323
+      TutorialGuySpriteSheet_22: -2126852193
+      TutorialGuySpriteSheet_20: 1084967658
+      TutorialGuySpriteSheet_75: -1878355448
+      TutorialGuySpriteSheet_39: -1459096462
+      TutorialGuySpriteSheet_26: -1199937299
+      TutorialGuySpriteSheet_86: 2063044052
+      TutorialGuySpriteSheet_132: -1874101283
+      TutorialGuySpriteSheet_13: -962784706
+      TutorialGuySpriteSheet_69: -71248412
+      TutorialGuySpriteSheet_44: -1541883751
+      TutorialGuySpriteSheet_102: 876315377
+      TutorialGuySpriteSheet_139: 92689636
+      TutorialGuySpriteSheet_0: 1053420404
+      TutorialGuySpriteSheet_144: -434946140
+      TutorialGuySpriteSheet_25: -133911460
+      TutorialGuySpriteSheet_57: -1456913635
+      TutorialGuySpriteSheet_38: 1825247157
+      TutorialGuySpriteSheet_32: -1449903576
+      TutorialGuySpriteSheet_131: -1958188968
+      TutorialGuySpriteSheet_56: 2059727996
+      TutorialGuySpriteSheet_19: -211415264
+      TutorialGuySpriteSheet_137: -2048802487
+      TutorialGuySpriteSheet_115: -758275368
+      TutorialGuySpriteSheet_31: 1107562635
+      TutorialGuySpriteSheet_135: -1210239817
+      TutorialGuySpriteSheet_77: -984901872
+      TutorialGuySpriteSheet_79: -1626137728
+      TutorialGuySpriteSheet_147: -1737851049
+      TutorialGuySpriteSheet_68: -354632492
+      TutorialGuySpriteSheet_125: 1897760030
+      TutorialGuySpriteSheet_6: -1240687495
+      TutorialGuySpriteSheet_157: -1316438256
+      TutorialGuySpriteSheet_10: -2035646959
+      TutorialGuySpriteSheet_108: -713037684
+      TutorialGuySpriteSheet_40: 1415741106
+      TutorialGuySpriteSheet_95: -1074210195
+      TutorialGuySpriteSheet_30: 1497601592
+      TutorialGuySpriteSheet_90: -383829426
+      TutorialGuySpriteSheet_133: -1853554621
+      TutorialGuySpriteSheet_111: -799936063
+      TutorialGuySpriteSheet_74: -662924755
+      TutorialGuySpriteSheet_83: 839043866
+      TutorialGuySpriteSheet_149: 232654789
+      TutorialGuySpriteSheet_103: 916049251
+      TutorialGuySpriteSheet_82: 1394343343
+      TutorialGuySpriteSheet_66: -581663802
+      TutorialGuySpriteSheet_21: -352712932
+      TutorialGuySpriteSheet_89: 2046427147
+      TutorialGuySpriteSheet_99: 718316461
+      TutorialGuySpriteSheet_27: 1835632058
+      TutorialGuySpriteSheet_116: -1221978931
+      TutorialGuySpriteSheet_47: 883282605
+      TutorialGuySpriteSheet_127: -2122217788
+      TutorialGuySpriteSheet_143: 1054175588
+      TutorialGuySpriteSheet_118: -1084259187
+      TutorialGuySpriteSheet_123: 770173410
+      TutorialGuySpriteSheet_23: 1369139903
+      TutorialGuySpriteSheet_29: -2095467051
+      TutorialGuySpriteSheet_100: -199452324
+      TutorialGuySpriteSheet_41: -1946572267
+      TutorialGuySpriteSheet_53: -209758804
+      TutorialGuySpriteSheet_156: 1248620386
+      TutorialGuySpriteSheet_46: 1257219628
+      TutorialGuySpriteSheet_65: 1106697848
+      TutorialGuySpriteSheet_145: -55359627
+      TutorialGuySpriteSheet_138: -1740419596
+      TutorialGuySpriteSheet_63: -161675140
+      TutorialGuySpriteSheet_151: 831994969
+      TutorialGuySpriteSheet_113: -701159950
+      TutorialGuySpriteSheet_128: -1564930426
+      TutorialGuySpriteSheet_150: 828424370
+      TutorialGuySpriteSheet_2: 379951016
+      TutorialGuySpriteSheet_50: 598769528
+      TutorialGuySpriteSheet_154: -1802718813
+      TutorialGuySpriteSheet_18: 1852404354
+      TutorialGuySpriteSheet_37: -427354734
+      TutorialGuySpriteSheet_96: -942943396
+      TutorialGuySpriteSheet_67: -1440686310
+      TutorialGuySpriteSheet_105: 2137800689
+      TutorialGuySpriteSheet_140: -1866516610
+      TutorialGuySpriteSheet_51: -1083819954
+      TutorialGuySpriteSheet_80: 201934820
+      TutorialGuySpriteSheet_106: 2133748440
+      TutorialGuySpriteSheet_107: 731757929
+      TutorialGuySpriteSheet_72: 1795172716
+      TutorialGuySpriteSheet_1: 520716640
+      TutorialGuySpriteSheet_17: 1301088820
+      TutorialGuySpriteSheet_101: 1736964830
+      TutorialGuySpriteSheet_52: 1892835281
+      TutorialGuySpriteSheet_104: 793595971
+      TutorialGuySpriteSheet_98: -2056720302
+      TutorialGuySpriteSheet_54: 763759791
+      TutorialGuySpriteSheet_28: -415952064
+      TutorialGuySpriteSheet_129: 1145688479
+      TutorialGuySpriteSheet_148: -1434400919
+      TutorialGuySpriteSheet_16: -1728581516
+      TutorialGuySpriteSheet_5: -1519791303
+      TutorialGuySpriteSheet_3: -1105846048
+      TutorialGuySpriteSheet_49: -2128126474
+      TutorialGuySpriteSheet_84: 648495600
+      TutorialGuySpriteSheet_152: 594486274
+      TutorialGuySpriteSheet_85: 1052464630
+      TutorialGuySpriteSheet_78: -1529130280
+      TutorialGuySpriteSheet_121: 19432531
+      TutorialGuySpriteSheet_146: -1496048885
+      TutorialGuySpriteSheet_126: -883250083
+      TutorialGuySpriteSheet_55: -1776003691
+      TutorialGuySpriteSheet_109: 1223459849
+      TutorialGuySpriteSheet_8: 1949995519
+      TutorialGuySpriteSheet_64: -1460115233
+      TutorialGuySpriteSheet_73: 323707368
+      TutorialGuySpriteSheet_117: 38797996
+      TutorialGuySpriteSheet_114: 1855977252
+      TutorialGuySpriteSheet_124: 2087012792
+      TutorialGuySpriteSheet_15: -550049347
+      TutorialGuySpriteSheet_36: -1308599791
+      TutorialGuySpriteSheet_45: 913915897
+      TutorialGuySpriteSheet_112: -632033880
+      TutorialGuySpriteSheet_91: 1907784434
+      TutorialGuySpriteSheet_71: 291251533
+      TutorialGuySpriteSheet_158: -209858809
+      TutorialGuySpriteSheet_24: 382760618
+      TutorialGuySpriteSheet_7: 1767167717
+      TutorialGuySpriteSheet_60: -255887771
+      TutorialGuySpriteSheet_62: -1276114959
+      TutorialGuySpriteSheet_48: -1128493646
+      TutorialGuySpriteSheet_110: -1203551038
+      TutorialGuySpriteSheet_70: 1647959056
+      TutorialGuySpriteSheet_42: 1799070695
+      TutorialGuySpriteSheet_11: -999299308
+      TutorialGuySpriteSheet_58: 1440192035
+      TutorialGuySpriteSheet_122: -268755376
+      TutorialGuySpriteSheet_4: -780639516
+      TutorialGuySpriteSheet_43: 745128828
+      TutorialGuySpriteSheet_76: -1517483099
+      TutorialGuySpriteSheet_141: -78973146
+      TutorialGuySpriteSheet_97: 340390314
+      TutorialGuySpriteSheet_92: 1935369713
+      TutorialGuySpriteSheet_142: -1637307778
+      TutorialGuySpriteSheet_88: 296407465
+      TutorialGuySpriteSheet_61: 2050051120
+      TutorialGuySpriteSheet_35: 293367665
+      TutorialGuySpriteSheet_93: 1337198760
+      TutorialGuySpriteSheet_136: -577776330
+      TutorialGuySpriteSheet_120: 84890464
+      TutorialGuySpriteSheet_153: 598041332
+      TutorialGuySpriteSheet_94: -1491521792
+      TutorialGuySpriteSheet_130: -755133126
+      TutorialGuySpriteSheet_34: -533931057
+      TutorialGuySpriteSheet_87: 634928270
+      TutorialGuySpriteSheet_59: -1890564719
+      TutorialGuySpriteSheet_81: -186818502
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
