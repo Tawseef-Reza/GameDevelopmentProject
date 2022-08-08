@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private int numberOfExtraJumps = 1;
     public float power = 2f;
     public float jumpPower = 10f;
     public Rigidbody2D _rigidbody2d;
@@ -18,7 +19,8 @@ public class PlayerController : MonoBehaviour
     private bool isTouchingGround;
 
     private bool hSlashingDone = true;
-    private bool lSlashingDone = true; 
+    private bool lSlashingDone = true;
+    private bool dashingDone = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,8 +56,18 @@ public class PlayerController : MonoBehaviour
         {
             //print("making true code being ran");
             //_animator.SetBool("isAscending", true);
+            numberOfExtraJumps = 1;
             _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, jumpPower);
             //StartCoroutine(allowJump());
+        }
+        else if (Input.GetButtonDown("Jump") && !isTouchingGround && numberOfExtraJumps > 0)
+        {
+            _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, jumpPower);
+            numberOfExtraJumps -= 1;
+        }
+        else
+        {
+            
         }
         /*else if ((!Input.GetButtonDown("Jump") && isTouchingGround))
         {
@@ -96,12 +108,24 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("isLightSlashing", true);
 
         }
-        else if (lSlashingDone == true && !Input.GetKey(KeyCode.Mouse0))
+        else if (/*lSlashingDone == true && */!Input.GetKey(KeyCode.Mouse0))
         {
             _animator.SetBool("isLightSlashing", false);
         }
 
+        if (Input.GetKeyDown(KeyCode.T) && dashingDone == true)
+        {
+            _animator.SetBool("isDashing", true);
+            StartCoroutine(finishDash());
+        }
+        else if (Input.GetKeyDown(KeyCode.T) && dashingDone == false)
+        {
 
+        }
+        else if (dashingDone == true && !Input.GetKeyDown(KeyCode.T))
+        {
+            _animator.SetBool("isDashing", false);
+        }
 
     }
     public void BecomeIdle()
@@ -112,7 +136,28 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("isHeavySlashing", false);
         _animator.SetBool("isLightSlashing", false);
     }
-    private IEnumerator allowLightSlash()
+    private IEnumerator finishDash()
+    {
+        dashingDone = false;
+        if (_spriteRendy.flipX == true) {
+            yield return new WaitForSeconds(0.083f);
+            transform.position = new Vector2(transform.position.x - 3, transform.position.y);
+            yield return new WaitForSeconds(0.083f);
+            transform.position = new Vector2(transform.position.x - 3, transform.position.y);
+            yield return new WaitForSeconds(0.083f);
+            dashingDone = true;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.083f);
+            transform.position = new Vector2(transform.position.x + 3, transform.position.y);
+            yield return new WaitForSeconds(0.083f);
+            transform.position = new Vector2(transform.position.x + 3, transform.position.y);
+            yield return new WaitForSeconds(0.083f);
+            dashingDone = true;
+        }
+    }
+    private IEnumerator allowLightSlash() // notneeded
     {
         lSlashingDone = false;
         yield return new WaitForSeconds(0.5f);
