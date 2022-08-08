@@ -95,6 +95,7 @@ public class GameStateScript : MonoBehaviour
     {
         if (checknumber == "check1")
         {
+            player.BecomeIdle();
             firstCheckButton.SetActive(false);
             firstText.SetActive(true);
             firstOK.SetActive(true);
@@ -103,6 +104,7 @@ public class GameStateScript : MonoBehaviour
     }
     public void FirstButtonClick()
     {
+        player._rigidbody2d.velocity = new Vector2(0, 0);
         _currentGame = GameState.TutorialWaitCheck1;
     }
     public void FirstButtonOK()
@@ -112,8 +114,8 @@ public class GameStateScript : MonoBehaviour
         firstCheckReached = true;
         StartCoroutine(KillTutorialGuy(firstTutorialGuyObject));
         tutorialGuy.Disappear();
-        
 
+        
         _currentGame = GameState.Playing;
         
     }
