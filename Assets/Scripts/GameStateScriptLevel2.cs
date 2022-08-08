@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GameStateScript : MonoBehaviour
+public class GameStateScriptLevel2 : MonoBehaviour
 {
     public int tutorialCheckpointsAvailable = 2;
     private enum GameState
@@ -24,8 +24,8 @@ public class GameStateScript : MonoBehaviour
     private GameObject firstText;
     private GameObject firstOK;
 
-    private TutorialGuy tutorialGuy;
-    private GameObject firstTutorialGuyObject;
+    /*private TutorialGuy tutorialGuy;
+    private GameObject firstTutorialGuyObject;*/
 
 
     //private CameraFollow _camera;
@@ -41,8 +41,8 @@ public class GameStateScript : MonoBehaviour
         firstText = GameObject.Find("FirstInstruction");
         firstOK = GameObject.Find("FirstOK");
 
-        tutorialGuy = GameObject.Find("TutorialGuy").GetComponent<TutorialGuy>();
-        firstTutorialGuyObject = GameObject.Find("TutorialGuy");
+        /*tutorialGuy = GameObject.Find("TutorialGuy").GetComponent<TutorialGuy>();
+        firstTutorialGuyObject = GameObject.Find("TutorialGuy");*/
 
         firstCheckButton.SetActive(false);
         firstText.SetActive(false);
@@ -112,8 +112,8 @@ public class GameStateScript : MonoBehaviour
         firstText.SetActive(false);
         firstOK.SetActive(false);
         firstCheckReached = true;
-        StartCoroutine(KillTutorialGuy(firstTutorialGuyObject));
-        tutorialGuy.Disappear();
+        /*StartCoroutine(KillTutorialGuy(firstTutorialGuyObject));
+        tutorialGuy.Disappear();*/
 
         
         _currentGame = GameState.Playing;

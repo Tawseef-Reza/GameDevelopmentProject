@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float power = 2f;
-    public float jumpPower = 6f;
+    public float jumpPower = 10f;
     public Rigidbody2D _rigidbody2d;
     private Animator _animator;
     private SpriteRenderer _spriteRendy;
