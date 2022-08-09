@@ -6,19 +6,23 @@ using TMPro;
 public class GameStateScript : MonoBehaviour
 {
     public int tutorialCheckpointsAvailable = 2;
-    private enum GameState
+    public enum GameState
     {
         Playing,
         TutorialWaitCheck1,
+        Killed,
         Settings
     }
-    private GameState _currentGame = GameState.Playing;
-    private PlayerController player;
-    private Transform playerLocation;
+    public GameState _currentGame = GameState.Playing;
+
+
+    public GameObject playerPhysical;
+    public PlayerController player;
+    public Transform playerLocation;
     private Transform Checkpoint1;
     private bool firstCheckReached;
 
-
+    public GameObject restartButton;
     public GameObject firstCheckButton;
     //public TextMeshProUGUI firstText;
     private GameObject firstText;
@@ -27,16 +31,23 @@ public class GameStateScript : MonoBehaviour
     private TutorialGuy tutorialGuy;
     private GameObject firstTutorialGuyObject;
 
+    private CameraFollow _cameraObj;
+    
+    
+    private GameObject panel;
 
+    private Transform[] Checkpoints;
     //private CameraFollow _camera;
     // Start is called before the first frame update
     void Start()
     {
         Checkpoint1 = GameObject.Find("Checkpoint1").GetComponent<Transform>();
         firstCheckReached = false;
-        player = GameObject.Find("PlayerMan").GetComponent<PlayerController>();
-        playerLocation = GameObject.Find("PlayerMan").GetComponent<Transform>();
+        playerPhysical = GameObject.Find("PlayerMan");
+        player = playerPhysical.GetComponent<PlayerController>();
+        playerLocation = playerPhysical.GetComponent<Transform>();
 
+        restartButton = GameObject.Find("Restart");
         firstCheckButton = GameObject.Find("FirstCheckButton");
         firstText = GameObject.Find("FirstInstruction");
         firstOK = GameObject.Find("FirstOK");
@@ -44,9 +55,23 @@ public class GameStateScript : MonoBehaviour
         tutorialGuy = GameObject.Find("TutorialGuy").GetComponent<TutorialGuy>();
         firstTutorialGuyObject = GameObject.Find("TutorialGuy");
 
+        _cameraObj = GameObject.Find("MainCamera").GetComponent<CameraFollow>();
+
+        
+        
+
+        panel = GameObject.Find("Panel");
+
+        Checkpoints = new Transform[] { Checkpoint1 };
+
+        
         firstCheckButton.SetActive(false);
         firstText.SetActive(false);
         firstOK.SetActive(false);
+        restartButton.SetActive(false);
+        panel.SetActive(false);
+
+        
         //_camera = GameObject.Find("MainCamera").GetComponent<CameraFollow>();
     }
 
@@ -56,15 +81,18 @@ public class GameStateScript : MonoBehaviour
         switch (_currentGame)
         {
             case GameState.Playing:
-                print("Playing");
+                //print("Playing");
                 Playing();
                 break;
             case GameState.TutorialWaitCheck1:
-                print("tutorialWait1");
+                //print("tutorialWait1");
                 TutorialWait("check1");
                 break;
+            case GameState.Killed:
+                Killed();
+                break;
             case GameState.Settings:
-                print("Settings");
+                //print("Settings");
                 Settings();
                 break;
         }
@@ -124,6 +152,36 @@ public class GameStateScript : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         Destroy(person);
+    }
+    //==Killed Functions==//
+
+    private void Killed()
+    {
+        restartButton.SetActive(true);
+        panel.SetActive(true);
+    }
+    /*private IEnumerator FinishDeath()
+    {
+        yield return new WaitForSeconds(1.081f);
+        player._animator.SetBool("isDead", false);
+        player._animator.SetBool("isGone", true);
+        restartButton.SetActive(true);
+        
+        
+    }*/
+    public void restartLevel()
+    {
+        restartButton.SetActive(false);
+        panel.SetActive(false);
+        var newPlayer = Instantiate(playerPhysical, Checkpoint1.position, Quaternion.identity);
+        Destroy(playerPhysical);
+        playerPhysical = newPlayer;
+        _cameraObj.playerheading = newPlayer.GetComponent<Transform>().GetChild(1);
+        player = newPlayer.GetComponent<PlayerController>();
+        playerLocation = newPlayer.GetComponent<Transform>();
+        
+        _currentGame = GameState.Playing;
+        
     }
     //==Settings Functions==//
     private void Settings()

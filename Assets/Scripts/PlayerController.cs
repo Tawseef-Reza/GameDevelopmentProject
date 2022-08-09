@@ -4,29 +4,44 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private GameStateScript gameyControl;
+    
+
+    public int numberOfLives = 3;
     private int numberOfExtraJumps = 1;
     public float power = 2f;
     public float jumpPower = 10f;
     public Rigidbody2D _rigidbody2d;
-    private Animator _animator;
+    public Animator _animator;
     private SpriteRenderer _spriteRendy;
     private float direction;
     
-
+    
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
     private bool isTouchingGround;
 
+    
+
     private bool hSlashingDone = true;
-    private bool lSlashingDone = true;
+    //private bool lSlashingDone = true;
     private bool dashingDone = true;
+    private bool hurtingDone = true;
+
+    
+
+    
     // Start is called before the first frame update
     void Start()
     {
+        gameyControl = GameObject.Find("GameStateController").GetComponent<GameStateScript>();
+        
         _animator = GetComponent<Animator>();
         _rigidbody2d = GetComponent<Rigidbody2D>();
         _spriteRendy = GetComponent<SpriteRenderer>();
+
+        
     }
 
     // Update is called once per frame
@@ -59,6 +74,10 @@ public class PlayerController : MonoBehaviour
             numberOfExtraJumps = 1;
             _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, jumpPower);
             //StartCoroutine(allowJump());
+        }
+        else if (!Input.GetButtonDown("Jump") && isTouchingGround)
+        {
+            numberOfExtraJumps = 1;
         }
         else if (Input.GetButtonDown("Jump") && !isTouchingGround && numberOfExtraJumps > 0)
         {
@@ -99,18 +118,20 @@ public class PlayerController : MonoBehaviour
         {
 
         }
-        else if (hSlashingDone == true && !Input.GetKeyDown(KeyCode.Mouse0))
+        else if (hSlashingDone == true && !Input.GetKeyDown(KeyCode.Mouse1))
         {
             _animator.SetBool("isHeavySlashing", false);
         }
         if (Input.GetKey(KeyCode.Mouse0))
         {
             _animator.SetBool("isLightSlashing", true);
+            
 
         }
         else if (/*lSlashingDone == true && */!Input.GetKey(KeyCode.Mouse0))
         {
             _animator.SetBool("isLightSlashing", false);
+            
         }
 
         if (Input.GetKeyDown(KeyCode.T) && dashingDone == true)
@@ -126,7 +147,45 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetBool("isDashing", false);
         }
+        if (hurtingDone == true)
+        {
+            _animator.SetBool("isTakingDamage", false);
+        }
+        print(numberOfExtraJumps + " is the number of extra jumps");
 
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            if (numberOfLives == 1 && hurtingDone == true)
+            {
+                _rigidbody2d.velocity = new Vector2(0, 0);
+                gameyControl._currentGame = GameStateScript.GameState.Killed;
+                _animator.SetBool("isDead", true);
+                StartCoroutine(FinishDeath());
+                
+                
+            }
+            else if (hurtingDone == true)
+            {
+                numberOfLives -= 1;
+                _animator.SetBool("isTakingDamage", true);
+                StartCoroutine(finishHurt());
+            }
+            else if (hurtingDone == false)
+            {
+
+            }
+
+        }
+    }
+    private IEnumerator FinishDeath()
+    {
+        yield return new WaitForSeconds(1.081f);
+        _animator.SetBool("isDead", false);
+        _animator.SetBool("isGone", true);
+        
     }
     public void BecomeIdle()
     {
@@ -135,6 +194,13 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("isJumping", false);
         _animator.SetBool("isHeavySlashing", false);
         _animator.SetBool("isLightSlashing", false);
+    }
+    private IEnumerator finishHurt()
+    {
+        hurtingDone = false;
+        yield return new WaitForSeconds(0.583f);
+        hurtingDone = true;
+
     }
     private IEnumerator finishDash()
     {
@@ -157,16 +223,23 @@ public class PlayerController : MonoBehaviour
             dashingDone = true;
         }
     }
-    private IEnumerator allowLightSlash() // notneeded
+    /*private IEnumerator allowLightSlash() // notneeded
     {
-        lSlashingDone = false;
-        yield return new WaitForSeconds(0.5f);
-        lSlashingDone = true;
-    }
+       // lSlashingDone = false;
+        yield return new WaitForSeconds(0.166f);
+        lightSlash.SetActive(true);
+        yield return new WaitForSeconds(0.2083f);
+        lightSlash.SetActive(false);
+        //lSlashingDone = true;
+    }*/
     private IEnumerator allowHeavySlash()
     {
         hSlashingDone = false;
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.333f);
+        
+        yield return new WaitForSeconds(0.333f);
+        
+        yield return new WaitForSeconds(0.0833f);
         hSlashingDone = true;
     }
     private IEnumerator allowJump()

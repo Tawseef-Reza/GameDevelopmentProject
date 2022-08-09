@@ -29,4 +29,5 @@ public class CameraFollowLevel2 : MonoBehaviour
             transform.position = new Vector3(player.position.x, player.position.y + 2.1f, transform.position.z);
         }*/
     }
+    
 }
