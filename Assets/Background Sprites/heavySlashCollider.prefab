@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8393197063526350346}
   - component: {fileID: 8393197063526350347}
-  - component: {fileID: 8393197063526350345}
+  - component: {fileID: 4994101207135274319}
   m_Layer: 0
   m_Name: heavySlashCollider
   m_TagString: PlayerAttack
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8393197063526350356}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.767088, y: -20.629522, z: 0}
   m_LocalScale: {x: 4.7610497, y: 4.7610497, z: 4.7610497}
   m_ConstrainProportionsScale: 0
@@ -76,7 +76,7 @@ PolygonCollider2D:
       - {x: -0.12542862, y: -0.18748401}
       - {x: -0.0108789615, y: -0.1545511}
       - {x: 0.281246, y: -0.030938033}
---- !u!114 &8393197063526350345
+--- !u!114 &4994101207135274319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,8 +85,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8393197063526350356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7168ba6e9f317f140a45e6a24aa630ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 11feeb5d5842cd544914cccb80882bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heavyslashself: {fileID: 0}
-  playerPlaceHSlash: {fileID: 0}

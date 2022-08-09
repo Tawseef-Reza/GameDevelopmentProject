@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameStateScript : MonoBehaviour
 {
@@ -31,12 +32,13 @@ public class GameStateScript : MonoBehaviour
     private TutorialGuy tutorialGuy;
     private GameObject firstTutorialGuyObject;
 
-    private CameraFollow _cameraObj;
-    
-    
-    private GameObject panel;
+    // private CameraFollow _cameraObj;
+    public GameObject lightSlashy;
+    public GameObject heavySlashy;
 
-    private Transform[] Checkpoints;
+    public GameObject panel;
+
+    
     //private CameraFollow _camera;
     // Start is called before the first frame update
     void Start()
@@ -55,14 +57,16 @@ public class GameStateScript : MonoBehaviour
         tutorialGuy = GameObject.Find("TutorialGuy").GetComponent<TutorialGuy>();
         firstTutorialGuyObject = GameObject.Find("TutorialGuy");
 
-        _cameraObj = GameObject.Find("MainCamera").GetComponent<CameraFollow>();
+        
+        
+        //_cameraObj = GameObject.Find("MainCamera").GetComponent<CameraFollow>();
 
         
         
 
         panel = GameObject.Find("Panel");
 
-        Checkpoints = new Transform[] { Checkpoint1 };
+        
 
         
         firstCheckButton.SetActive(false);
@@ -103,8 +107,9 @@ public class GameStateScript : MonoBehaviour
     {
         CheckCheckpoint();
         player.PlayerUpdate();
-        
-        
+        heavySlashy.GetComponent<heavySlashScript>().heavyUpdate();
+        lightSlashy.GetComponent<lightSlashScript>().lightUpdate();
+
     }
     private void CheckCheckpoint()
     {
@@ -157,8 +162,7 @@ public class GameStateScript : MonoBehaviour
 
     private void Killed()
     {
-        restartButton.SetActive(true);
-        panel.SetActive(true);
+        
     }
     /*private IEnumerator FinishDeath()
     {
@@ -171,16 +175,19 @@ public class GameStateScript : MonoBehaviour
     }*/
     public void restartLevel()
     {
-        restartButton.SetActive(false);
+        /*restartButton.SetActive(false);
         panel.SetActive(false);
+        lightSlashy.SetActive(true);
+        heavySlashy.SetActive(true);
         var newPlayer = Instantiate(playerPhysical, Checkpoint1.position, Quaternion.identity);
         Destroy(playerPhysical);
         playerPhysical = newPlayer;
-        _cameraObj.playerheading = newPlayer.GetComponent<Transform>().GetChild(1);
+        //_cameraObj.playerheading = newPlayer.GetComponent<Transform>().GetChild(1);
         player = newPlayer.GetComponent<PlayerController>();
-        playerLocation = newPlayer.GetComponent<Transform>();
+        playerLocation = newPlayer.GetComponent<Transform>();*/
+        SceneManager.LoadScene("Level 1");
         
-        _currentGame = GameState.Playing;
+        
         
     }
     //==Settings Functions==//

@@ -9,13 +9,18 @@ public class CameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerheading = GameObject.Find("Heading").GetComponent<Transform>();
+        playerheading = GameObject.FindWithTag("RealPlayer").GetComponent<Transform>().GetChild(1);
 
     }
     // Update is called once per frame
     void Update()
     {
-
+        
+        /*if (playerheading == null)
+        {
+            playerheading = GameObject.FindWithTag("RealPlayer").GetComponent<Transform>().GetChild(1);
+            print("playerheading set");
+        }*/
         transform.position = new Vector3(Mathf.Clamp(playerheading.position.x, -6.52f, 166.6f), Mathf.Clamp(playerheading.position.y, -19, -16.14f), transform.position.z);
         /*print(transform.position.x + " is transform.position.x, "+ transform.position.y + " is transform.position.y");
         

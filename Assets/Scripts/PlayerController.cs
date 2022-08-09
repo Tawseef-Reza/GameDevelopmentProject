@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D _rigidbody2d;
     public Animator _animator;
     private SpriteRenderer _spriteRendy;
-    private float direction;
+    public float direction;
     
     
     public Transform groundCheck;
@@ -29,19 +29,37 @@ public class PlayerController : MonoBehaviour
     private bool dashingDone = true;
     private bool hurtingDone = true;
 
-    
+    public GameObject lightSlash;
+    public Transform lightSlashTransform;
+    public GameObject heavySlash;
+    public Transform heavySlashTransform;
 
-    
+    //private CheckPointData1 checkpointStuff;
+
     // Start is called before the first frame update
     void Start()
     {
+       // transform.position = checkpointStuff;
         gameyControl = GameObject.Find("GameStateController").GetComponent<GameStateScript>();
         
         _animator = GetComponent<Animator>();
         _rigidbody2d = GetComponent<Rigidbody2D>();
         _spriteRendy = GetComponent<SpriteRenderer>();
-
         
+        numberOfLives = 3;
+
+        lightSlash = GameObject.FindWithTag("lightSlash");
+        heavySlash = GameObject.FindWithTag("heavySlash");
+        lightSlashTransform = lightSlash.GetComponent<Transform>();
+        heavySlashTransform = heavySlash.GetComponent<Transform>();
+        gameyControl.lightSlashy = lightSlash;
+        gameyControl.heavySlashy = heavySlash;
+
+        lightSlash.SetActive(false);
+        heavySlash.SetActive(false);
+        /*lightSlash.SetActive(false);
+        heavySlash.SetActive(false);*/
+        _spriteRendy.color = Color.white;
     }
 
     // Update is called once per frame
@@ -52,6 +70,7 @@ public class PlayerController : MonoBehaviour
         direction = Input.GetAxis("Horizontal");
         if (direction < 0f)
         {
+            
             _spriteRendy.flipX = true;
             _animator.SetBool("isRunning", true);
             _rigidbody2d.velocity = new Vector2(Input.GetAxis("Horizontal") * power, _rigidbody2d.velocity.y);
@@ -112,7 +131,7 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetBool("isHeavySlashing", true);
             StartCoroutine(allowHeavySlash());
-
+            
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1) && hSlashingDone == false)
         {
@@ -121,17 +140,19 @@ public class PlayerController : MonoBehaviour
         else if (hSlashingDone == true && !Input.GetKeyDown(KeyCode.Mouse1))
         {
             _animator.SetBool("isHeavySlashing", false);
+            
         }
         if (Input.GetKey(KeyCode.Mouse0))
         {
             _animator.SetBool("isLightSlashing", true);
+            lightSlash.SetActive(true);
             
 
         }
         else if (/*lSlashingDone == true && */!Input.GetKey(KeyCode.Mouse0))
         {
             _animator.SetBool("isLightSlashing", false);
-            
+            lightSlash.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.T) && dashingDone == true)
@@ -151,6 +172,7 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetBool("isTakingDamage", false);
         }
+        
         print(numberOfExtraJumps + " is the number of extra jumps");
 
     }
@@ -162,6 +184,8 @@ public class PlayerController : MonoBehaviour
             {
                 _rigidbody2d.velocity = new Vector2(0, 0);
                 gameyControl._currentGame = GameStateScript.GameState.Killed;
+                gameyControl.restartButton.SetActive(true);
+                gameyControl.panel.SetActive(true);
                 _animator.SetBool("isDead", true);
                 StartCoroutine(FinishDeath());
                 
@@ -235,10 +259,11 @@ public class PlayerController : MonoBehaviour
     private IEnumerator allowHeavySlash()
     {
         hSlashingDone = false;
+
         yield return new WaitForSeconds(0.333f);
-        
+        heavySlash.SetActive(true);
         yield return new WaitForSeconds(0.333f);
-        
+        heavySlash.SetActive(false);
         yield return new WaitForSeconds(0.0833f);
         hSlashingDone = true;
     }

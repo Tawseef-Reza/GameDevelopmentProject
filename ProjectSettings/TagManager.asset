@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - PlayerAttack
+  - RealPlayer
+  - heavySlash
+  - lightSlash
   layers:
   - Default
   - TransparentFX
