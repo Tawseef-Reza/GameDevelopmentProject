@@ -10,7 +10,7 @@ public class enemyGetHurt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _animation = GetComponent<Animator>();
+        _animation = GameObject.Find("CircleParent").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class enemyGetHurt : MonoBehaviour
         }
         else if (collision.CompareTag("heavySlash") && hurtingDone == true)
         {
-            numberOfLives -= 2;
+            numberOfLives -= 3;
             _animation.SetBool("enemyHurt", true);
             StartCoroutine(finishHurt());
             

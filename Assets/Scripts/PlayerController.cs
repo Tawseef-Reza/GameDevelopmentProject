@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float jumpPower = 10f;
     public Rigidbody2D _rigidbody2d;
     public Animator _animator;
-    private SpriteRenderer _spriteRendy;
+    public SpriteRenderer _spriteRendy;
     public float direction;
     
     
@@ -146,12 +146,15 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetBool("isLightSlashing", true);
             lightSlash.SetActive(true);
+            Invoke("SetLightFalse", 0.25f);
+            
             
 
         }
         else if (/*lSlashingDone == true && */!Input.GetKey(KeyCode.Mouse0))
         {
             _animator.SetBool("isLightSlashing", false);
+
             lightSlash.SetActive(false);
         }
 
@@ -175,6 +178,11 @@ public class PlayerController : MonoBehaviour
         
         print(numberOfExtraJumps + " is the number of extra jumps");
 
+    }
+    private void SetLightFalse()
+    {
+        lightSlash.SetActive(false);
+        print("invoke done");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -214,10 +222,14 @@ public class PlayerController : MonoBehaviour
     public void BecomeIdle()
     {
         _animator.SetBool("isWaitSpecial", true);
-        _animator.SetBool("isRunning", false);
-        _animator.SetBool("isJumping", false);
-        _animator.SetBool("isHeavySlashing", false);
         _animator.SetBool("isLightSlashing", false);
+        _animator.SetBool("isFalling", false);
+        _animator.SetBool("isRunning", false);
+        _animator.SetBool("isAscending", false);
+    }
+    public void GoBack()
+    {
+        _animator.SetBool("isWaitSpecial", false);
     }
     private IEnumerator finishHurt()
     {

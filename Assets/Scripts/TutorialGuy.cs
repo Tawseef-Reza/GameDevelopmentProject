@@ -8,6 +8,7 @@ public class TutorialGuy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         _animator = GetComponent<Animator>();
     }
     
@@ -20,8 +21,9 @@ public class TutorialGuy : MonoBehaviour
     {
         _animator.SetBool("isDone", true);
     }
-    public void BecomeIdle()
+    public void Reappear()
     {
+        
         _animator.SetBool("isDone", false);
     }
 }
