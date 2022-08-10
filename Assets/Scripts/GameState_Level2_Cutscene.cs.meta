@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/GameState_Level2_Cutscene.cs.meta
+guid: 95c55057b9dd4e34bbefc41d6daeee63
+========
+guid: ec3a5041bce6a2847aab40c8ef105c6c
+>>>>>>>> 65a835e7281b905e916046393e4ed1ba346fce29:Assets/Scripts/dummyHurt.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
