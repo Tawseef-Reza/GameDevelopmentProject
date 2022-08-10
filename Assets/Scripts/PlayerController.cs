@@ -190,12 +190,7 @@ public class PlayerController : MonoBehaviour
         {
             if (numberOfLives == 1 && hurtingDone == true)
             {
-                _rigidbody2d.velocity = new Vector2(0, 0);
-                gameyControl._currentGame = GameStateScript.GameState.Killed;
-                gameyControl.restartButton.SetActive(true);
-                gameyControl.panel.SetActive(true);
-                _animator.SetBool("isDead", true);
-                StartCoroutine(FinishDeath());
+                DeadScene();
                 
                 
             }
@@ -211,6 +206,19 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+        else if (collision.CompareTag("Spike"))
+        {
+            DeadScene();
+        }
+    }
+    private void DeadScene()
+    {
+        _rigidbody2d.velocity = new Vector2(0, 0);
+        gameyControl._currentGame = GameStateScript.GameState.Killed;
+        gameyControl.restartButton.SetActive(true);
+        gameyControl.panel.SetActive(true);
+        _animator.SetBool("isDead", true);
+        StartCoroutine(FinishDeath());
     }
     private IEnumerator FinishDeath()
     {

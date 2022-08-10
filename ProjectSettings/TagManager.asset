@@ -9,6 +9,7 @@ TagManager:
   - RealPlayer
   - heavySlash
   - lightSlash
+  - Spike
   layers:
   - Default
   - TransparentFX

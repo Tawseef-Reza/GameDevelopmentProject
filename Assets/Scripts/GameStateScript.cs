@@ -23,9 +23,11 @@ public class GameStateScript : MonoBehaviour
     private Transform Checkpoint1;
     private Transform Checkpoint2;
     private Transform Checkpoint3;
+    private Transform Checkpoint4;
     private bool firstCheckReached;
     private bool secondCheckReached;
     private bool thirdCheckReached;
+    private bool fourthCheckReached;
 
     public GameObject restartButton;
     public GameObject firstCheckButton;
@@ -43,6 +45,9 @@ public class GameStateScript : MonoBehaviour
     private GameObject thirdText;
     private GameObject thirdOK;
 
+    public GameObject fourthCheckButton;
+    public GameObject fourthText;
+    public GameObject fourthOK;
 
     private TutorialGuy tutorialGuy;
     private GameObject firstTutorialGuyObject;
@@ -61,9 +66,11 @@ public class GameStateScript : MonoBehaviour
         Checkpoint1 = GameObject.Find("Checkpoint1").GetComponent<Transform>();
         Checkpoint2 = GameObject.Find("Checkpoint2").GetComponent<Transform>();
         Checkpoint3 = GameObject.Find("Checkpoint3").GetComponent<Transform>();
+        Checkpoint4 = GameObject.Find("Checkpoint4").GetComponent<Transform>();
         firstCheckReached = false;
         secondCheckReached = false;
         thirdCheckReached = false;
+        fourthCheckReached = false;
         playerPhysical = GameObject.Find("PlayerMan");
         player = playerPhysical.GetComponent<PlayerController>();
         playerLocation = playerPhysical.GetComponent<Transform>();
@@ -82,6 +89,10 @@ public class GameStateScript : MonoBehaviour
         thirdCheckButton = GameObject.Find("ThirdCheckButton");
         thirdText = GameObject.Find("ThirdInstruction");
         thirdOK = GameObject.Find("ThirdOK");
+
+        fourthCheckButton = GameObject.Find("FourthCheckButton");
+        fourthText = GameObject.Find("FourthInstruction");
+        fourthOK = GameObject.Find("FourthOK");
 
         firstTutorialGuyObject = GameObject.Find("TutorialGuyParent");
         tutorialGuy = firstTutorialGuyObject.GetComponent<TutorialGuy>();
@@ -113,6 +124,9 @@ public class GameStateScript : MonoBehaviour
         thirdText.SetActive(false);
         thirdOK.SetActive(false);
 
+        fourthCheckButton.SetActive(false);
+        fourthText.SetActive(false);
+        fourthOK.SetActive(false);
         restartButton.SetActive(false);
         panel.SetActive(false);
 
@@ -163,17 +177,22 @@ public class GameStateScript : MonoBehaviour
         {
             secondCheckButton.SetActive(true);
         }
-        else if (playerLocation.position.x >= Checkpoint3.position.x && playerLocation.position.x <= Checkpoint3.position.x + 1 && playerLocation.position.y <= Checkpoint3.position.y + 1 && (thirdCheckReached == false) && (secondCheckReached == true) && (firstCheckReached == true))
+        else if (playerLocation.position.x >= Checkpoint3.position.x && playerLocation.position.x <= Checkpoint3.position.x + 2 && playerLocation.position.y <= Checkpoint3.position.y + 1 && (thirdCheckReached == false) && (secondCheckReached == true) && (firstCheckReached == true))
         {
             thirdCheckButton.SetActive(true);
-            print("thirdButtonisActive");
+            
+        }
+        else if (playerLocation.position.x >= Checkpoint4.position.x && playerLocation.position.x <= Checkpoint4.position.x + 2 && playerLocation.position.y <= Checkpoint4.position.y + 1 && (fourthCheckReached == false) && (thirdCheckReached == true) && (secondCheckReached == true) && (firstCheckReached == true))
+        {
+            fourthCheckButton.SetActive(true);
+            
         }
         else
         {
             firstCheckButton.SetActive(false);
             secondCheckButton.SetActive(false);
             thirdCheckButton.SetActive(false);
-            print("all inactive");
+            fourthCheckButton.SetActive(false);
         }
     }
     //==TutorialWait Functions==//
@@ -256,7 +275,26 @@ public class GameStateScript : MonoBehaviour
         _currentGame = GameState.Playing;
 
     }
+    public void FourthButtonClick()
+    {
+        player._rigidbody2d.velocity = new Vector2(0, 0);
+        player.BecomeIdle();
+        fourthCheckButton.SetActive(false);
+        fourthText.SetActive(true);
+        fourthOK.SetActive(true);
+        _currentGame = GameState.TutorialWait;
+    }
+    public void FourthButtonOK()
+    {
+        fourthText.SetActive(false);
+        fourthOK.SetActive(false);
+        fourthCheckReached = true;
+        StartCoroutine(KillTutorialGuy("fourth"));
 
+        player.GoBack();
+
+        _currentGame = GameState.Playing;
+    }
     private IEnumerator KillTutorialGuy(string stage)
     {
         switch (stage) {
@@ -277,7 +315,14 @@ public class GameStateScript : MonoBehaviour
             case "third":
                 tutorialGuy.Disappear();
                 yield return new WaitForSeconds(1);
-                firstTutorialGuyObject.transform.position = new Vector2(5.2f, -13.4f);
+                firstTutorialGuyObject.transform.position = new Vector3(13.11f, -13.31f, 0);
+                tutorialGuy.Reappear();
+                yield return new WaitForSeconds(1.166f);
+                break;
+            case "fourth":
+                tutorialGuy.Disappear();
+                yield return new WaitForSeconds(1);
+                firstTutorialGuyObject.transform.position = new Vector3(26.11f, -13.31f, 0);
                 tutorialGuy.Reappear();
                 yield return new WaitForSeconds(1.166f);
                 break;
