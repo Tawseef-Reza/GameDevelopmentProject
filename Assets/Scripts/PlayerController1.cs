@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController1 : MonoBehaviour
 {
-    private GameStateScript gameyControl;
+    private GameStateScript1 gameyControl;
 
-    private int levelToGoTo = 2;
+    private int levelToGoTo = 3;
     public Image[] heartArray = new Image[5];
     public int numberOfLives = 5;
     private int numberOfExtraJumps = 1;
-    public float power = 2f;
+    public float power = 5.5f;
     public float jumpPower = 10f;
     public Rigidbody2D _rigidbody2d;
     public Animator _animator;
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
        // transform.position = checkpointStuff;
-        gameyControl = GameObject.Find("GameStateController").GetComponent<GameStateScript>();
+        gameyControl = GameObject.Find("GameStateController").GetComponent<GameStateScript1>();
         
         _animator = GetComponent<Animator>();
         _rigidbody2d = GetComponent<Rigidbody2D>();
@@ -279,7 +279,7 @@ public class PlayerController : MonoBehaviour
         heartArray[2].color = new Color32(0, 0, 0, 255);
         heartArray[3].color = new Color32(0, 0, 0, 255);
         heartArray[4].color = new Color32(0, 0, 0, 255);
-        gameyControl._currentGame = GameStateScript.GameState.Killed;
+        gameyControl._currentGame = GameStateScript1.GameState.Killed;
         gameyControl.SettingsButton.SetActive(false);
         gameyControl.restartButton.SetActive(true);
         gameyControl.panel.SetActive(true);

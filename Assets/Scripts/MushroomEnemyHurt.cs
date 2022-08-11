@@ -159,7 +159,7 @@ public class MushroomEnemyHurt : MonoBehaviour
             numberOfLives -= 3;
             if (numberOfLives <= 0)
             {
-                print("this dying code is running with " + numberOfLives + " lives");
+                
                 
                 _animator.SetBool("isDead", true);
                 StartCoroutine(finishDeath());
@@ -167,7 +167,7 @@ public class MushroomEnemyHurt : MonoBehaviour
             }
             else 
             {
-                print("this hurting code is running " + numberOfLives + " lives");
+                
                 _animator.SetBool("enemyHurt", true);
                 StartCoroutine(finishHurt());
                 
@@ -182,7 +182,7 @@ public class MushroomEnemyHurt : MonoBehaviour
     private IEnumerator finishDeath()
     { 
         yield return new WaitForSeconds(deathAnimSpeed);
-        print("parentdestroyed");
+        
         Destroy(Parentobj);
     }
     private IEnumerator finishHurt()

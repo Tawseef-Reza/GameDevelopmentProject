@@ -4,13 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class GameStateScript : MonoBehaviour
+public class GameStateScript1 : MonoBehaviour
 {
     private LevelDataScript levelData;
     public enum GameState
     {
         Playing,
-        TutorialWait,
+        /*TutorialWait,*/
         Killed,
         Settings
     }
@@ -19,27 +19,27 @@ public class GameStateScript : MonoBehaviour
     public GameObject SettingsButton;
     public GameObject MenuSettings;
 
-    public Transform[] tutorialRespawns = new Transform[3];
+    /*public Transform[] tutorialRespawns = new Transform[3];*/
     
     public GameObject playerPhysical;
-    public PlayerController player;
+    public PlayerController1 player;
     public Transform playerLocation;
-    private Transform Checkpoint1;
+    /*private Transform Checkpoint1;
     private Transform Checkpoint2;
     private Transform Checkpoint3;
-    private Transform Checkpoint4;
-    private bool firstCheckReached;
+    private Transform Checkpoint4;*/
+    /*private bool firstCheckReached;
     private bool secondCheckReached;
     private bool thirdCheckReached;
-    private bool fourthCheckReached;
+    private bool fourthCheckReached;*/
 
     public GameObject restartButton;
-    public GameObject firstCheckButton;
+    /*public GameObject firstCheckButton;
     //public TextMeshProUGUI firstText;
     private GameObject firstText;
-    private GameObject firstOK;
+    private GameObject firstOK;*/
 
-    public GameObject secondCheckButton;
+    /*public GameObject secondCheckButton;
     private GameObject secondText;
     private GameObject secondOK;
     private GameObject secondTwoText;
@@ -54,10 +54,10 @@ public class GameStateScript : MonoBehaviour
 
     public GameObject fourthCheckButton;
     public GameObject fourthText;
-    public GameObject fourthOK;
+    public GameObject fourthOK;*/
 
-    private TutorialGuy tutorialGuy;
-    private GameObject firstTutorialGuyObject;
+    /*private TutorialGuy tutorialGuy;
+    private GameObject firstTutorialGuyObject;*/
 
     // private CameraFollow _cameraObj;
     /*public GameObject lightSlashy;
@@ -71,24 +71,24 @@ public class GameStateScript : MonoBehaviour
     void Start()
     {
         levelData = GameObject.FindWithTag("LevelData").GetComponent<LevelDataScript>();
-        levelData.LevelNumber = 1;
+        levelData.LevelNumber = 2;
         SettingsButton = GameObject.FindWithTag("Settings");
         MenuSettings = GameObject.Find("MenuSettings");
 
-        Checkpoint1 = GameObject.Find("Checkpoint1").GetComponent<Transform>();
+        /*Checkpoint1 = GameObject.Find("Checkpoint1").GetComponent<Transform>();
         Checkpoint2 = GameObject.Find("Checkpoint2").GetComponent<Transform>();
         Checkpoint3 = GameObject.Find("Checkpoint3").GetComponent<Transform>();
         Checkpoint4 = GameObject.Find("Checkpoint4").GetComponent<Transform>();
         firstCheckReached = false;
         secondCheckReached = false;
         thirdCheckReached = false;
-        fourthCheckReached = false;
+        fourthCheckReached = false;*/
         playerPhysical = GameObject.Find("PlayerMan");
-        player = playerPhysical.GetComponent<PlayerController>();
+        player = playerPhysical.GetComponent<PlayerController1>();
         playerLocation = playerPhysical.GetComponent<Transform>();
 
         restartButton = GameObject.Find("Restart");
-        firstCheckButton = GameObject.Find("FirstCheckButton");
+        /*firstCheckButton = GameObject.Find("FirstCheckButton");
         firstText = GameObject.Find("FirstInstruction");
         firstOK = GameObject.Find("FirstOK");
 
@@ -110,7 +110,7 @@ public class GameStateScript : MonoBehaviour
         fourthOK = GameObject.Find("FourthOK");
 
         firstTutorialGuyObject = GameObject.Find("TutorialGuyParent");
-        tutorialGuy = firstTutorialGuyObject.GetComponent<TutorialGuy>();
+        tutorialGuy = firstTutorialGuyObject.GetComponent<TutorialGuy>();*/
         
 
         
@@ -125,7 +125,7 @@ public class GameStateScript : MonoBehaviour
         
 
         
-        firstCheckButton.SetActive(false);
+        /*firstCheckButton.SetActive(false);
         firstText.SetActive(false);
         firstOK.SetActive(false);
 
@@ -143,7 +143,7 @@ public class GameStateScript : MonoBehaviour
 
         fourthCheckButton.SetActive(false);
         fourthText.SetActive(false);
-        fourthOK.SetActive(false);
+        fourthOK.SetActive(false);*/
         restartButton.SetActive(false);
         panel.SetActive(false);
 
@@ -162,10 +162,10 @@ public class GameStateScript : MonoBehaviour
                 //print("Playing");
                 Playing();
                 break;
-            case GameState.TutorialWait:
+            /*case GameState.TutorialWait:
                 //print("tutorialWait1");
                 TutorialWait("idk");
-                break;
+                break;*/
             case GameState.Killed:
                 Killed();
                 break;
@@ -179,13 +179,13 @@ public class GameStateScript : MonoBehaviour
     //==Playing Functions==//
     private void Playing()
     {
-        CheckCheckpoint();
+        /*CheckCheckpoint();*/
         player.PlayerUpdate();
         /*heavySlashy.GetComponent<heavySlashScript>().heavyUpdate();
         lightSlashy.GetComponent<lightSlashScript>().lightUpdate();*/
 
     }
-    private void CheckCheckpoint()
+    /*private void CheckCheckpoint()
     {
         
         if (playerLocation.position.x >= Checkpoint1.position.x &&  playerLocation.position.x <= Checkpoint1.position.x + 3.5 && playerLocation.position.y <= Checkpoint1.position.y + 1 && (firstCheckReached == false))
@@ -213,9 +213,9 @@ public class GameStateScript : MonoBehaviour
             thirdCheckButton.SetActive(false);
             fourthCheckButton.SetActive(false);
         }
-    }
+    }*/
     //==TutorialWait Functions==//
-    private void TutorialWait(string checknumber)
+    /*private void TutorialWait(string checknumber)
     {
         
     }
@@ -354,12 +354,12 @@ public class GameStateScript : MonoBehaviour
                 tutorialGuy.Reappear();
                 yield return new WaitForSeconds(1.166f);
                 break;
-        }
+        }*/
         
         
         
 
-    }
+    /*}*/
     //==Killed Functions==//
 
     private void Killed()
@@ -387,7 +387,7 @@ public class GameStateScript : MonoBehaviour
         //_cameraObj.playerheading = newPlayer.GetComponent<Transform>().GetChild(1);
         player = newPlayer.GetComponent<PlayerController>();
         playerLocation = newPlayer.GetComponent<Transform>();*/
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Level 2");
         
         
         

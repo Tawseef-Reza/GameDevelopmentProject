@@ -138,10 +138,10 @@ public class goblinEnemyHurt : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("triggerRan");
+        
         if (hurtingDone == true && collision.CompareTag("lightSlash"))
         {
-            print("light trigger ran");
+            
             numberOfLives -= 1;
             if (numberOfLives <= 0)
             {
@@ -157,11 +157,11 @@ public class goblinEnemyHurt : MonoBehaviour
         }
         else if (collision.CompareTag("heavySlash") && hurtingDone == true)
         {
-            print("heavy trigger ran");
+            
             numberOfLives -= 3;
             if (numberOfLives <= 0)
             {
-                print("this dying code is running with " + numberOfLives + " lives");
+                
                 
                 _animator.SetBool("isDead", true);
                 StartCoroutine(finishDeath());
@@ -169,7 +169,7 @@ public class goblinEnemyHurt : MonoBehaviour
             }
             else 
             {
-                print("this hurting code is running " + numberOfLives + " lives");
+                
                 _animator.SetBool("enemyHurt", true);
                 StartCoroutine(finishHurt());
                 
@@ -184,7 +184,7 @@ public class goblinEnemyHurt : MonoBehaviour
     private IEnumerator finishDeath()
     { 
         yield return new WaitForSeconds(deathAnimSpeed);
-        print("parentdestroyed");
+        
         Destroy(Parentobj);
     }
     private IEnumerator finishHurt()

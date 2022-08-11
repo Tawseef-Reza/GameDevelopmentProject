@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7930446486018272816}
   - component: {fileID: 4918248239043008237}
+  - component: {fileID: 8957051499958721879}
   m_Layer: 0
   m_Name: HealCollect1
   m_TagString: Heal
@@ -150,3 +151,23 @@ PolygonCollider2D:
       - {x: 0.15896511, y: -1.0221386}
       - {x: 0.7315273, y: -0.44283295}
       - {x: 0.89197826, y: 0.249937}
+--- !u!95 &8957051499958721879
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930446486018272817}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 275d944c881c85d49941ba583a9df195, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

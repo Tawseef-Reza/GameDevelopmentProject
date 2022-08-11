@@ -12,6 +12,9 @@ TagManager:
   - Spike
   - tester
   - Heal
+  - Settings
+  - LevelData
+  - NextLevel
   layers:
   - Default
   - TransparentFX

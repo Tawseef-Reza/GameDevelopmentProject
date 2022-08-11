@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ParallaxDuskMountainBackgroundArtwork/Scenes/Level 1.unity
     guid: a48547b20dd1bb84a9053ac236b81e4e
+  - enabled: 1
+    path: Assets/ParallaxDuskMountainBackgroundArtwork/Scenes/Level 2.unity
+    guid: 178bea11c1bcc4d4cb5d17ad61afe281
   m_configObjects: {}
