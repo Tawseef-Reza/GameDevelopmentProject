@@ -10,6 +10,7 @@ TagManager:
   - heavySlash
   - lightSlash
   - Spike
+  - tester
   layers:
   - Default
   - TransparentFX

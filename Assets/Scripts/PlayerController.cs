@@ -29,10 +29,10 @@ public class PlayerController : MonoBehaviour
     private bool dashingDone = true;
     private bool hurtingDone = true;
 
-    public GameObject lightSlash;
+    /*public GameObject lightSlash;
     public Transform lightSlashTransform;
     public GameObject heavySlash;
-    public Transform heavySlashTransform;
+    public Transform heavySlashTransform;*/
 
     //private CheckPointData1 checkpointStuff;
 
@@ -48,15 +48,15 @@ public class PlayerController : MonoBehaviour
         
         numberOfLives = 3;
 
-        lightSlash = GameObject.FindWithTag("lightSlash");
+        /*lightSlash = GameObject.FindWithTag("lightSlash");
         heavySlash = GameObject.FindWithTag("heavySlash");
         lightSlashTransform = lightSlash.GetComponent<Transform>();
-        heavySlashTransform = heavySlash.GetComponent<Transform>();
-        gameyControl.lightSlashy = lightSlash;
-        gameyControl.heavySlashy = heavySlash;
+        heavySlashTransform = heavySlash.GetComponent<Transform>();*/
+        /*gameyControl.lightSlashy = lightSlash;
+        gameyControl.heavySlashy = heavySlash;*/
 
-        lightSlash.SetActive(false);
-        heavySlash.SetActive(false);
+        /*lightSlash.SetActive(false);
+        heavySlash.SetActive(false);*/
         /*lightSlash.SetActive(false);
         heavySlash.SetActive(false);*/
         _spriteRendy.color = Color.white;
@@ -70,14 +70,19 @@ public class PlayerController : MonoBehaviour
         direction = Input.GetAxis("Horizontal");
         if (direction < 0f)
         {
-            
-            _spriteRendy.flipX = true;
+            if (transform.localScale.x > 0)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
             _animator.SetBool("isRunning", true);
             _rigidbody2d.velocity = new Vector2(Input.GetAxis("Horizontal") * power, _rigidbody2d.velocity.y);
         }
         else if (direction > 0f)
         {
-            _spriteRendy.flipX = false;
+            if (transform.localScale.x < 0)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
             _animator.SetBool("isRunning", true);
             _rigidbody2d.velocity = new Vector2(Input.GetAxis("Horizontal") * power, _rigidbody2d.velocity.y);
         }
@@ -145,8 +150,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             _animator.SetBool("isLightSlashing", true);
-            lightSlash.SetActive(true);
-            Invoke("SetLightFalse", 0.25f);
+            /*lightSlash.SetActive(true);*/
+            /*Invoke("SetLightFalse", 0.25f);*/
             
             
 
@@ -155,7 +160,7 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetBool("isLightSlashing", false);
 
-            lightSlash.SetActive(false);
+            /*lightSlash.SetActive(false);*/
         }
 
         if (Input.GetKeyDown(KeyCode.T) && dashingDone == true)
@@ -176,14 +181,14 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("isTakingDamage", false);
         }
         
-        print(numberOfExtraJumps + " is the number of extra jumps");
+        
 
     }
-    private void SetLightFalse()
+    /*private void SetLightFalse()
     {
         lightSlash.SetActive(false);
         print("invoke done");
-    }
+    }*/
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
@@ -206,6 +211,10 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+        else if (collision.CompareTag("tester"))
+        {
+
+        }
         else if (collision.CompareTag("Spike"))
         {
             DeadScene();
@@ -225,6 +234,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1.081f);
         _animator.SetBool("isDead", false);
         _animator.SetBool("isGone", true);
+        
         
     }
     public void BecomeIdle()
@@ -281,9 +291,9 @@ public class PlayerController : MonoBehaviour
         hSlashingDone = false;
 
         yield return new WaitForSeconds(0.333f);
-        heavySlash.SetActive(true);
+        /*heavySlash.SetActive(true);*/
         yield return new WaitForSeconds(0.333f);
-        heavySlash.SetActive(false);
+        /*heavySlash.SetActive(false);*/
         yield return new WaitForSeconds(0.0833f);
         hSlashingDone = true;
     }

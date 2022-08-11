@@ -16,6 +16,7 @@ public class GameStateScript : MonoBehaviour
     }
     public GameState _currentGame = GameState.Playing;
 
+    public Transform[] tutorialRespawns = new Transform[3];
 
     public GameObject playerPhysical;
     public PlayerController player;
@@ -53,8 +54,8 @@ public class GameStateScript : MonoBehaviour
     private GameObject firstTutorialGuyObject;
 
     // private CameraFollow _cameraObj;
-    public GameObject lightSlashy;
-    public GameObject heavySlashy;
+    /*public GameObject lightSlashy;
+    public GameObject heavySlashy;*/
 
     public GameObject panel;
 
@@ -162,8 +163,8 @@ public class GameStateScript : MonoBehaviour
     {
         CheckCheckpoint();
         player.PlayerUpdate();
-        heavySlashy.GetComponent<heavySlashScript>().heavyUpdate();
-        lightSlashy.GetComponent<lightSlashScript>().lightUpdate();
+        /*heavySlashy.GetComponent<heavySlashScript>().heavyUpdate();
+        lightSlashy.GetComponent<lightSlashScript>().lightUpdate();*/
 
     }
     private void CheckCheckpoint()
@@ -301,21 +302,21 @@ public class GameStateScript : MonoBehaviour
             case "first":
                 tutorialGuy.Disappear();
                 yield return new WaitForSeconds(1);
-                firstTutorialGuyObject.transform.position = new Vector2(-4.8f, firstTutorialGuyObject.transform.position.y);
+                firstTutorialGuyObject.transform.position = tutorialRespawns[0].position;
                 tutorialGuy.Reappear();
                 yield return new WaitForSeconds(1.166f);
                 break;
             case "second":
                 tutorialGuy.Disappear();
                 yield return new WaitForSeconds(1);
-                firstTutorialGuyObject.transform.position = new Vector2(4.2f, -13.4f);
+                firstTutorialGuyObject.transform.position = tutorialRespawns[1].position;
                 tutorialGuy.Reappear();
                 yield return new WaitForSeconds(1.166f);
                 break;
             case "third":
                 tutorialGuy.Disappear();
                 yield return new WaitForSeconds(1);
-                firstTutorialGuyObject.transform.position = new Vector3(13.11f, -13.31f, 0);
+                firstTutorialGuyObject.transform.position = tutorialRespawns[2].position;
                 tutorialGuy.Reappear();
                 yield return new WaitForSeconds(1.166f);
                 break;
