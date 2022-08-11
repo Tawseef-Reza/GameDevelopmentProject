@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     private GameStateScript gameyControl;
-    
 
-    public int numberOfLives = 3;
+    public Image[] heartArray = new Image[5];
+    public int numberOfLives = 5;
     private int numberOfExtraJumps = 1;
     public float power = 2f;
     public float jumpPower = 10f;
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private bool dashingDone = true;
     private bool hurtingDone = true;
 
+    private int activeHeart;
     /*public GameObject lightSlash;
     public Transform lightSlashTransform;
     public GameObject heavySlash;
@@ -45,8 +47,8 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rigidbody2d = GetComponent<Rigidbody2D>();
         _spriteRendy = GetComponent<SpriteRenderer>();
-        
-        numberOfLives = 3;
+
+        numberOfLives = 5;
 
         /*lightSlash = GameObject.FindWithTag("lightSlash");
         heavySlash = GameObject.FindWithTag("heavySlash");
@@ -65,7 +67,45 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     public void PlayerUpdate()
     {
-        
+        print(numberOfLives);
+        switch (numberOfLives)
+        {
+            case 5:
+                heartArray[0].color = new Color32(255, 255, 255, 255);
+                heartArray[1].color = new Color32(255, 255, 255, 255);
+                heartArray[2].color = new Color32(255, 255, 255, 255);
+                heartArray[3].color = new Color32(255, 255, 255, 255);
+                heartArray[4].color = new Color32(255, 255, 255, 255);
+                break;
+            case 4:
+                heartArray[0].color = new Color32(255, 255, 255, 255);
+                heartArray[1].color = new Color32(255, 255, 255, 255);
+                heartArray[2].color = new Color32(255, 255, 255, 255);
+                heartArray[3].color = new Color32(255, 255, 255, 255);
+                heartArray[4].color = new Color32(0, 0, 0, 255);
+                break;
+            case 3:
+                heartArray[0].color = new Color32(255, 255, 255, 255);
+                heartArray[1].color = new Color32(255, 255, 255, 255);
+                heartArray[2].color = new Color32(255, 255, 255, 255);
+                heartArray[3].color = new Color32(0, 0, 0, 255);
+                heartArray[4].color = new Color32(0, 0, 0, 255);
+                break;
+            case 2:
+                heartArray[0].color = new Color32(255, 255, 255, 255);
+                heartArray[1].color = new Color32(255, 255, 255, 255);
+                heartArray[2].color = new Color32(0, 0, 0, 255);
+                heartArray[3].color = new Color32(0, 0, 0, 255);
+                heartArray[4].color = new Color32(0, 0, 0, 255);
+                break;
+            case 1:
+                heartArray[0].color = new Color32(255, 255, 255, 255);
+                heartArray[1].color = new Color32(0, 0, 0, 255);
+                heartArray[2].color = new Color32(0, 0, 0, 255);
+                heartArray[3].color = new Color32(0, 0, 0, 255);
+                heartArray[4].color = new Color32(0, 0, 0, 255);
+                break;
+        }
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         direction = Input.GetAxis("Horizontal");
         if (direction < 0f)
@@ -195,6 +235,7 @@ public class PlayerController : MonoBehaviour
         {
             if (numberOfLives == 1 && hurtingDone == true)
             {
+                numberOfLives -= 1;
                 DeadScene();
                 
                 
@@ -215,6 +256,11 @@ public class PlayerController : MonoBehaviour
         {
 
         }
+        else if (collision.CompareTag("Heal"))
+        {
+            numberOfLives += 1;
+            Destroy(collision.gameObject);
+        }
         else if (collision.CompareTag("Spike"))
         {
             DeadScene();
@@ -223,6 +269,11 @@ public class PlayerController : MonoBehaviour
     private void DeadScene()
     {
         _rigidbody2d.velocity = new Vector2(0, 0);
+        heartArray[0].color = new Color32(0, 0, 0, 255);
+        heartArray[1].color = new Color32(0, 0, 0, 255);
+        heartArray[2].color = new Color32(0, 0, 0, 255);
+        heartArray[3].color = new Color32(0, 0, 0, 255);
+        heartArray[4].color = new Color32(0, 0, 0, 255);
         gameyControl._currentGame = GameStateScript.GameState.Killed;
         gameyControl.restartButton.SetActive(true);
         gameyControl.panel.SetActive(true);

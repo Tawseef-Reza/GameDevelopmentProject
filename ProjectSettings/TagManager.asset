@@ -11,6 +11,7 @@ TagManager:
   - lightSlash
   - Spike
   - tester
+  - Heal
   layers:
   - Default
   - TransparentFX

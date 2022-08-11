@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MushroomEnemyHurt : MonoBehaviour
+public class goblinEnemyHurt : MonoBehaviour
 {
     private bool hurtingDone = true;
     private int numberOfLives = 3;
@@ -11,20 +11,20 @@ public class MushroomEnemyHurt : MonoBehaviour
     private GameObject Parentobj;
 
     private GameObject playerObj;
-    private Transform playerLocationMushroom;
+    private Transform playerLocationGoblin;
 
     public Transform[] path = new Transform[2];
     private int index;
-    public float mushroomSpeed = 3;
+    public float goblinSpeed = 3;
 
-    private enum mushroomState
+    private enum goblinState
     {
         followingPath,
         attacking,
         beingHurt
     }
-    private mushroomState _currentMushroomState;
-    private float deathAnimSpeed = 1.166f;
+    private goblinState _currentGoblinState;
+    private float deathAnimSpeed = 0.80f;
     private float hurtAnimSpeed = 0.333f;
     // Start is called before the first frame update
     void Start()
@@ -33,10 +33,10 @@ public class MushroomEnemyHurt : MonoBehaviour
         _animator = Parentobj.GetComponent<Animator>();
         Parent = Parentobj.GetComponent<Transform>();
         index = 0;
-        _currentMushroomState = mushroomState.followingPath;
+        _currentGoblinState = goblinState.followingPath;
 
         playerObj = GameObject.FindWithTag("RealPlayer");
-        playerLocationMushroom = playerObj.GetComponent<Transform>();
+        playerLocationGoblin = playerObj.GetComponent<Transform>();
 
     }
 
@@ -45,42 +45,42 @@ public class MushroomEnemyHurt : MonoBehaviour
     {
         Physics2D.IgnoreCollision(playerObj.GetComponent<CapsuleCollider2D>(), GetComponent<BoxCollider2D>());
         
-        if (playerLocationMushroom.position.x > path[0].position.x && playerLocationMushroom.position.x < path[1].position.x && hurtingDone == true)
+        if (playerLocationGoblin.position.x > path[0].position.x && playerLocationGoblin.position.x < path[1].position.x && hurtingDone == true)
         {
-            if (playerLocationMushroom.position.y > Parent.position.y + 1 || playerLocationMushroom.position.y < Parent.position.y - 1)
+            if (playerLocationGoblin.position.y > Parent.position.y + 1 || playerLocationGoblin.position.y < Parent.position.y - 1)
             {
                 if (playerObj.GetComponent<Rigidbody2D>().velocity.x == 0 && playerObj.GetComponent<Rigidbody2D>().velocity.y == 0)
                 {
-                    _currentMushroomState = mushroomState.followingPath;
+                    _currentGoblinState = goblinState.followingPath;
                 }
                 else
                 {
-                    _currentMushroomState = mushroomState.attacking;
+                    _currentGoblinState = goblinState.attacking;
                 }
             }
             else 
             { 
-                _currentMushroomState = mushroomState.attacking; 
+                _currentGoblinState = goblinState.attacking; 
             }
             
         }
         else if (hurtingDone == true)
         {
-            _currentMushroomState = mushroomState.followingPath;
+            _currentGoblinState = goblinState.followingPath;
         }
         else if (hurtingDone == false)
         {
-            _currentMushroomState = mushroomState.beingHurt;
+            _currentGoblinState = goblinState.beingHurt;
         }
         //Vector3(0.185363531,-0.0082502868,0)
-        switch (_currentMushroomState) {
-            case mushroomState.followingPath:
+        switch (_currentGoblinState) {
+            case goblinState.followingPath:
                 if ((index == 0 && Parent.localScale.x > 0) || (index == 1 && Parent.localScale.x < 0))
                 {
                     Parent.localScale = new Vector3(-Parent.localScale.x, Parent.localScale.y, Parent.localScale.z);
                 }
                 _animator.SetBool("isAttacking", false);
-                Parent.position = Vector3.MoveTowards(Parent.position, path[index].position, mushroomSpeed * Time.deltaTime);
+                Parent.position = Vector3.MoveTowards(Parent.position, path[index].position, goblinSpeed * Time.deltaTime);
                 if (Parent.position == path[index].position)
                 {
                     if ((index == 0 && Parent.localScale.x < 0) || (index == 1 && Parent.localScale.x > 0)) 
@@ -97,13 +97,13 @@ public class MushroomEnemyHurt : MonoBehaviour
                     }
                 }
                 break;
-            case mushroomState.attacking:
-                if ((playerLocationMushroom.position.x < Parent.position.x && Parent.localScale.x > 0) || (playerLocationMushroom.position.x > Parent.position.x && Parent.localScale.x < 0))
+            case goblinState.attacking:
+                if ((playerLocationGoblin.position.x < Parent.position.x && Parent.localScale.x > 0) || (playerLocationGoblin.position.x > Parent.position.x && Parent.localScale.x < 0))
                 {
                     Parent.localScale = new Vector3(-Parent.localScale.x, Parent.localScale.y, Parent.localScale.z);
                     
                 }
-                if (Vector3.Distance(playerLocationMushroom.position, Parent.position) <= 2.3f)
+                if (Vector3.Distance(playerLocationGoblin.position, Parent.position) <= 2.3f)
                 {
                     /*if ((playerLocationMushroom.position.x < Parent.position.x && Parent.localScale.x > 0) || (playerLocationMushroom.position.x > Parent.position.x && Parent.localScale.x < 0))
                     {
@@ -119,13 +119,13 @@ public class MushroomEnemyHurt : MonoBehaviour
                 }
                 else
                 {
-                    Parent.position = Vector3.MoveTowards(Parent.position, new Vector3 (playerLocationMushroom.position.x, Parent.position.y, Parent.position.z), (mushroomSpeed) * Time.deltaTime);
+                    Parent.position = Vector3.MoveTowards(Parent.position, new Vector3 (playerLocationGoblin.position.x, Parent.position.y, Parent.position.z), (goblinSpeed) * Time.deltaTime);
                     _animator.SetBool("isAttacking", false);
                 }
                 
                 
                 break;
-            case mushroomState.beingHurt:
+            case goblinState.beingHurt:
                 break;
 
         }
@@ -138,9 +138,10 @@ public class MushroomEnemyHurt : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        print("triggerRan");
         if (hurtingDone == true && collision.CompareTag("lightSlash"))
         {
+            print("light trigger ran");
             numberOfLives -= 1;
             if (numberOfLives <= 0)
             {
@@ -156,6 +157,7 @@ public class MushroomEnemyHurt : MonoBehaviour
         }
         else if (collision.CompareTag("heavySlash") && hurtingDone == true)
         {
+            print("heavy trigger ran");
             numberOfLives -= 3;
             if (numberOfLives <= 0)
             {

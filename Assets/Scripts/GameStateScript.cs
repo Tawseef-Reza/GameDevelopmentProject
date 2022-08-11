@@ -45,6 +45,9 @@ public class GameStateScript : MonoBehaviour
     public GameObject thirdCheckButton;
     private GameObject thirdText;
     private GameObject thirdOK;
+    private GameObject thirdTwoText;
+    private GameObject thirdTwoOK;
+
 
     public GameObject fourthCheckButton;
     public GameObject fourthText;
@@ -90,6 +93,9 @@ public class GameStateScript : MonoBehaviour
         thirdCheckButton = GameObject.Find("ThirdCheckButton");
         thirdText = GameObject.Find("ThirdInstruction");
         thirdOK = GameObject.Find("ThirdOK");
+        thirdTwoText = GameObject.Find("ThirdTwoInstruction");
+        thirdTwoOK = GameObject.Find("ThirdTwoOK");
+
 
         fourthCheckButton = GameObject.Find("FourthCheckButton");
         fourthText = GameObject.Find("FourthInstruction");
@@ -124,6 +130,8 @@ public class GameStateScript : MonoBehaviour
         thirdCheckButton.SetActive(false);
         thirdText.SetActive(false);
         thirdOK.SetActive(false);
+        thirdTwoText.SetActive(false);
+        thirdTwoOK.SetActive(false);
 
         fourthCheckButton.SetActive(false);
         fourthText.SetActive(false);
@@ -268,6 +276,13 @@ public class GameStateScript : MonoBehaviour
     {
         thirdText.SetActive(false);
         thirdOK.SetActive(false);
+        thirdTwoText.SetActive(true);
+        thirdTwoOK.SetActive(true);
+    }
+    public void Third2ButtonOK()
+    {
+        thirdTwoText.SetActive(false);
+        thirdTwoOK.SetActive(false);
         thirdCheckReached = true;
         StartCoroutine(KillTutorialGuy("third"));
 
