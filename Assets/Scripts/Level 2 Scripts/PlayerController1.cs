@@ -10,7 +10,7 @@ public class PlayerController1 : MonoBehaviour
 
     private AudioSource _walkingAudio;
 
-    private int levelToGoTo = 3;
+    private string levelToGoTo = "Level 2 End cutscene";
     public Image[] heartArray = new Image[5];
     public int numberOfLives = 5;
     private int numberOfExtraJumps = 1;
@@ -263,7 +263,7 @@ public class PlayerController1 : MonoBehaviour
         }
         else if (collision.CompareTag("NextLevel"))
         {
-            SceneManager.LoadScene($"Level {levelToGoTo}");
+            SceneManager.LoadScene($"{levelToGoTo}");
         }
         else if (collision.CompareTag("Heal"))
         {
