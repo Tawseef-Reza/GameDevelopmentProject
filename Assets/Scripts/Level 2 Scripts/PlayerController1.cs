@@ -8,6 +8,8 @@ public class PlayerController1 : MonoBehaviour
 {
     private GameStateScript1 gameyControl;
 
+    private AudioSource _walkingAudio;
+
     private int levelToGoTo = 3;
     public Image[] heartArray = new Image[5];
     public int numberOfLives = 5;
@@ -43,33 +45,33 @@ public class PlayerController1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // transform.position = checkpointStuff;
+        _walkingAudio = transform.GetChild(5).GetComponent<AudioSource>();
+        // transform.position = checkpointStuff;
         gameyControl = GameObject.Find("GameStateController").GetComponent<GameStateScript1>();
+
         
+
         _animator = GetComponent<Animator>();
         _rigidbody2d = GetComponent<Rigidbody2D>();
         _spriteRendy = GetComponent<SpriteRenderer>();
 
         numberOfLives = 5;
 
-        /*lightSlash = GameObject.FindWithTag("lightSlash");
-        heavySlash = GameObject.FindWithTag("heavySlash");
-        lightSlashTransform = lightSlash.GetComponent<Transform>();
-        heavySlashTransform = heavySlash.GetComponent<Transform>();*/
-        /*gameyControl.lightSlashy = lightSlash;
-        gameyControl.heavySlashy = heavySlash;*/
-
-        /*lightSlash.SetActive(false);
-        heavySlash.SetActive(false);*/
-        /*lightSlash.SetActive(false);
-        heavySlash.SetActive(false);*/
+        _walkingAudio.enabled = false;
         _spriteRendy.color = Color.white;
     }
 
     // Update is called once per frame
     public void PlayerUpdate()
     {
-        
+        if ((_rigidbody2d.velocity.x > 0.9f || _rigidbody2d.velocity.x < -0.9f) && (_rigidbody2d.velocity.y < 1 && _rigidbody2d.velocity.y > -1))
+        {
+            _walkingAudio.enabled = true;
+        }
+        else
+        {
+            _walkingAudio.enabled = false;
+        }
         switch (numberOfLives)
         {
             case 5:
@@ -140,18 +142,18 @@ public class PlayerController1 : MonoBehaviour
             
             _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, jumpPower);
             //StartCoroutine(allowJump());
-            print("jumpdefault");
+            
         }
         else if (!Input.GetButtonDown("Jump") && isTouchingGround)
         {
             numberOfExtraJumps = 1;
-            print("restored jump");
+            
         }
         else if (Input.GetButtonDown("Jump") && !isTouchingGround && numberOfExtraJumps > 0)
         {
             _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, jumpPower);
             numberOfExtraJumps -= 1;
-            print("jump in air");
+            
         }
         else
         {
@@ -179,6 +181,7 @@ public class PlayerController1 : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
+            
             _animator.SetBool("isHeavySlashing", true);
             StartCoroutine(allowHeavySlash());
             
@@ -194,6 +197,7 @@ public class PlayerController1 : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Mouse0))
         {
+            
             _animator.SetBool("isLightSlashing", true);
             /*lightSlash.SetActive(true);*/
             /*Invoke("SetLightFalse", 0.25f);*/
@@ -263,8 +267,16 @@ public class PlayerController1 : MonoBehaviour
         }
         else if (collision.CompareTag("Heal"))
         {
-            numberOfLives += 1;
-            Destroy(collision.gameObject);
+            if (numberOfLives >= 5)
+            {
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                numberOfLives += 1;
+                Destroy(collision.gameObject);
+            }
+            
         }
         else if (collision.CompareTag("Spike"))
         {

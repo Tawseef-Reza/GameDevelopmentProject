@@ -15,6 +15,7 @@ TagManager:
   - Settings
   - LevelData
   - NextLevel
+  - Restart
   layers:
   - Default
   - TransparentFX

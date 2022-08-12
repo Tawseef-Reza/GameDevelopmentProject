@@ -83,7 +83,7 @@ public class GameStateScript : MonoBehaviour
         secondCheckReached = false;
         thirdCheckReached = false;
         fourthCheckReached = false;
-        playerPhysical = GameObject.Find("PlayerMan");
+        playerPhysical = GameObject.FindWithTag("RealPlayer");
         player = playerPhysical.GetComponent<PlayerController>();
         playerLocation = playerPhysical.GetComponent<Transform>();
 
@@ -350,7 +350,7 @@ public class GameStateScript : MonoBehaviour
             case "fourth":
                 tutorialGuy.Disappear();
                 yield return new WaitForSeconds(1);
-                firstTutorialGuyObject.transform.position = new Vector3(26.11f, -13.31f, 0);
+                firstTutorialGuyObject.transform.position = new Vector3(23.68f, -12.84f, 0);
                 tutorialGuy.Reappear();
                 yield return new WaitForSeconds(1.166f);
                 break;

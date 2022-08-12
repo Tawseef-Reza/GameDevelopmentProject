@@ -16,7 +16,7 @@ public class CameraFollowLevel2 : MonoBehaviour
     void Update()
     {
 
-        transform.position = new Vector3(Mathf.Clamp(playerheading.position.x, -3.1f, 104.62f), Mathf.Clamp(playerheading.position.y, -16.5f, -16.5f), transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(playerheading.position.x, -8.09f, 133.7f), Mathf.Clamp(playerheading.position.y, -16.5f, -16.5f), transform.position.z);
         /*print(transform.position.x + " is transform.position.x, "+ transform.position.y + " is transform.position.y");
         
         if (transform.position.x < player.position.x)

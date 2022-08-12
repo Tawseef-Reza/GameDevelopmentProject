@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     private GameStateScript gameyControl;
 
+    private AudioSource _walkingAudio;
     private int levelToGoTo = 2;
     public Image[] heartArray = new Image[5];
     public int numberOfLives = 5;
@@ -43,7 +44,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // transform.position = checkpointStuff;
+        _walkingAudio = transform.GetChild(5).GetComponent<AudioSource>();
+        // transform.position = checkpointStuff;
         gameyControl = GameObject.Find("GameStateController").GetComponent<GameStateScript>();
         
         _animator = GetComponent<Animator>();
@@ -52,24 +54,21 @@ public class PlayerController : MonoBehaviour
 
         numberOfLives = 5;
 
-        /*lightSlash = GameObject.FindWithTag("lightSlash");
-        heavySlash = GameObject.FindWithTag("heavySlash");
-        lightSlashTransform = lightSlash.GetComponent<Transform>();
-        heavySlashTransform = heavySlash.GetComponent<Transform>();*/
-        /*gameyControl.lightSlashy = lightSlash;
-        gameyControl.heavySlashy = heavySlash;*/
-
-        /*lightSlash.SetActive(false);
-        heavySlash.SetActive(false);*/
-        /*lightSlash.SetActive(false);
-        heavySlash.SetActive(false);*/
+        _walkingAudio.enabled = false;
         _spriteRendy.color = Color.white;
     }
 
     // Update is called once per frame
     public void PlayerUpdate()
     {
-        
+        if ((_rigidbody2d.velocity.x > 0.9f || _rigidbody2d.velocity.x < -0.9f) && (_rigidbody2d.velocity.y < 1 && _rigidbody2d.velocity.y > -1))
+        {
+            _walkingAudio.enabled = true;
+        }
+        else
+        {
+            _walkingAudio.enabled = false;
+        }
         switch (numberOfLives)
         {
             case 5:
@@ -180,6 +179,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             _animator.SetBool("isHeavySlashing", true);
+            
             StartCoroutine(allowHeavySlash());
             
         }
@@ -195,10 +195,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             _animator.SetBool("isLightSlashing", true);
+            
             /*lightSlash.SetActive(true);*/
             /*Invoke("SetLightFalse", 0.25f);*/
-            
-            
+
+
 
         }
         else if (/*lSlashingDone == true && */!Input.GetKey(KeyCode.Mouse0))
@@ -263,8 +264,15 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.CompareTag("Heal"))
         {
-            numberOfLives += 1;
-            Destroy(collision.gameObject);
+            if (numberOfLives >= 5)
+            {
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                numberOfLives += 1;
+                Destroy(collision.gameObject);
+            }
         }
         else if (collision.CompareTag("Spike"))
         {
