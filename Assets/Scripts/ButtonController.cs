@@ -32,5 +32,9 @@ public class ButtonController : MonoBehaviour
     {
         SceneManager.LoadScene("Level 1");
     }
+    public void Credits()
+    {
+        SceneManager.LoadScene("Credit Screen");
+    }
     
 }
